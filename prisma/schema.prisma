@@ -1,0 +1,312 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SourceKind {
+  API
+  RSS
+  CRAWLER
+  MANUAL
+}
+
+enum SyncStatus {
+  RUNNING
+  SUCCEEDED
+  PARTIAL
+  FAILED
+}
+
+enum SyncType {
+  JOBS
+  GMAIL
+}
+
+enum ApplicationStatus {
+  SAVED
+  PREPARING
+  APPLIED
+  REPLIED
+  INTERVIEW
+  OFFER
+  REJECTED
+  WITHDRAWN
+  ARCHIVED
+}
+
+enum ApplicationEventType {
+  STATUS_CHANGED
+  EMAIL_SENT
+  EMAIL_RECEIVED
+  NOTE
+  FOLLOW_UP_SCHEDULED
+}
+
+enum EmailDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum EmailMessageStatus {
+  DRAFT
+  SENT
+  RECEIVED
+  FAILED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  profile       UserProfile?
+  applications  Application[]
+  emailThreads  EmailThread[]
+  syncRuns      SyncRun[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model UserProfile {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  headline           String?
+  summary            String?  @db.Text
+  location           String?
+  timezone           String?
+  yearsExperience    Int?
+  skills             String[] @default([])
+  portfolioUrl       String?
+  resumeUrl           String?
+  resumeFileName     String?
+  preferredTone      String?
+  targetRoles        String[] @default([])
+  preferredLocations String[] @default([])
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model JobSource {
+  id             String      @id @default(cuid())
+  key            String      @unique
+  name           String
+  kind           SourceKind
+  baseUrl        String
+  enabled        Boolean     @default(true)
+  lastSyncedAt   DateTime?
+  lastSuccessfulAt DateTime?
+  lastError      String?     @db.Text
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  jobs     Job[]
+  syncRuns SyncRun[]
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  normalizedName String @unique
+  websiteUrl  String?
+  logoUrl     String?
+  location    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  jobs Job[]
+}
+
+model Job {
+  id             String   @id @default(cuid())
+  sourceId       String
+  sourceJobId    String?
+  companyId      String
+  title          String
+  description    String   @db.Text
+  descriptionText String  @db.Text
+  location       String?
+  country        String?
+  timezone       String?
+  remoteRegion   String?
+  isRemote       Boolean  @default(true)
+  employmentType String?
+  salaryMin      Int?
+  salaryMax      Int?
+  salaryCurrency String?
+  skills         String[] @default([])
+  sourceUrl      String
+  applyUrl       String?
+  contactEmail   String?
+  publishedAt    DateTime?
+  expiresAt      DateTime?
+  discoveredAt   DateTime @default(now())
+  lastSeenAt     DateTime @default(now())
+  staleAt        DateTime?
+  isActive       Boolean  @default(true)
+  contentHash    String
+  fingerprint    String
+  rawData        Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  source       JobSource     @relation(fields: [sourceId], references: [id], onDelete: Restrict)
+  company      Company       @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  applications Application[]
+
+  @@unique([sourceId, sourceJobId])
+  @@unique([sourceId, sourceUrl])
+  @@index([fingerprint])
+  @@index([isActive, publishedAt])
+  @@index([companyId])
+}
+
+model Application {
+  id              String            @id @default(cuid())
+  userId          String
+  jobId           String
+  status          ApplicationStatus @default(SAVED)
+  contactName     String?
+  contactEmail    String?
+  appliedAt       DateTime?
+  followUpAt      DateTime?
+  notes           String?           @db.Text
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  job          Job                @relation(fields: [jobId], references: [id], onDelete: Restrict)
+  events       ApplicationEvent[]
+  emailThreads EmailThread[]
+
+  @@unique([userId, jobId])
+  @@index([userId, status])
+}
+
+model ApplicationEvent {
+  id            String               @id @default(cuid())
+  applicationId String
+  type          ApplicationEventType
+  fromStatus    ApplicationStatus?
+  toStatus      ApplicationStatus?
+  note          String?              @db.Text
+  metadata      Json?
+  occurredAt    DateTime             @default(now())
+  createdAt     DateTime             @default(now())
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId, occurredAt])
+}
+
+model EmailThread {
+  id            String   @id @default(cuid())
+  userId        String
+  applicationId String?
+  gmailThreadId String   @unique
+  subject       String?
+  snippet       String?  @db.Text
+  lastMessageAt DateTime?
+  historyId     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  application Application? @relation(fields: [applicationId], references: [id], onDelete: SetNull)
+  messages    EmailMessage[]
+
+  @@index([userId, lastMessageAt])
+  @@index([applicationId])
+}
+
+model EmailMessage {
+  id             String             @id @default(cuid())
+  threadId       String
+  gmailMessageId String             @unique
+  direction      EmailDirection
+  status         EmailMessageStatus
+  subject        String?
+  snippet        String?            @db.Text
+  fromAddress    String?
+  toAddresses    String[]           @default([])
+  ccAddresses    String[]           @default([])
+  sentAt         DateTime?
+  receivedAt     DateTime?
+  createdAt      DateTime           @default(now())
+
+  thread EmailThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+
+  @@index([threadId, sentAt])
+}
+
+model SyncRun {
+  id             String     @id @default(cuid())
+  userId         String?
+  sourceId       String?
+  type           SyncType
+  status         SyncStatus @default(RUNNING)
+  startedAt      DateTime   @default(now())
+  finishedAt     DateTime?
+  fetchedCount   Int        @default(0)
+  acceptedCount  Int        @default(0)
+  createdCount   Int        @default(0)
+  updatedCount   Int        @default(0)
+  skippedCount   Int        @default(0)
+  errorCount     Int        @default(0)
+  errorMessage   String?    @db.Text
+  metadata       Json?
+
+  user   User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  source JobSource? @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+
+  @@index([type, startedAt])
+  @@index([sourceId, startedAt])
+}
