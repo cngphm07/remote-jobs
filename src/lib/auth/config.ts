@@ -7,6 +7,8 @@ export { isOwnerEmail } from "@/lib/auth/owner";
 export function authConfiguration(): NextAuthConfig {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET;
+
   const providers = clientId && clientSecret
     ? [Google({
         clientId,
@@ -22,6 +24,7 @@ export function authConfiguration(): NextAuthConfig {
     : [];
 
   return {
+    secret,
     trustHost: true,
     providers,
     session: { strategy: "jwt" },
