@@ -47,37 +47,39 @@ export function SmartImporter() {
   };
 
   return (
-    <div className="border border-[var(--line)] bg-[var(--surface)] p-7 md:p-10">
-      <div className="max-w-2xl">
-        <div className="mb-3 flex items-center gap-2">
+    <div className="border border-[var(--line)] bg-[var(--surface)] p-8 md:p-12 lg:p-14 transition-colors hover:border-[var(--line2)]">
+      <div className="max-w-3xl">
+        <div className="mb-4 flex items-center gap-2.5">
           <Link2 size={15} className="text-[var(--accent)]" />
-          <span className="mono text-[.56rem] text-[var(--accent)]" style={{ letterSpacing: ".22em" }}>
-            HỖ TRỢ LINK TỪ MỌI NỀN TẢNG
+          <span className="mono text-[.58rem] text-[var(--accent)]" style={{ letterSpacing: ".24em" }}>
+            UNIVERSAL PLATFORM PARSER
           </span>
         </div>
-        <h2 className="display text-[clamp(1.4rem,2.4vw,2.1rem)] text-[var(--ink)]">
+
+        <h2 className="display text-[clamp(1.4rem,2.8vw,2.2rem)] leading-[1.08] text-[var(--ink)]">
           Dán link bài tuyển dụng bất kỳ<br />
           để tự động bóc tách <span className="amp">&amp;</span> lưu trữ
         </h2>
-        <p className="mt-3 text-[.88rem] font-light leading-relaxed text-[var(--g2)]">
-          Tự động phân tích Schema JSON-LD, OpenGraph và trích xuất Tiêu đề, Công ty, Mức lương, Kỹ năng từ link LinkedIn, Upwork, Pickdi, Workable, Indeed, OnlineJobs.ph...
+
+        <p className="mt-4 max-w-2xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.7] text-[var(--g2)]">
+          Hệ thống tự động phân tích cấu trúc Schema JSON-LD, OpenGraph và trích xuất Tiêu đề, Công ty, Mức lương, Kỹ năng từ link LinkedIn, Upwork, Pickdi, Workable, Indeed, OnlineJobs.ph...
         </p>
 
-        {/* URL input form */}
-        <form onSubmit={handleSubmit} className="mt-6">
-          <div className="flex items-center border border-[var(--line)] bg-[var(--bg)] p-2 focus-within:border-[var(--line2)]">
+        {/* URL input form with comfortable spacing */}
+        <form onSubmit={handleSubmit} className="mt-8">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:border sm:border-[var(--line)] sm:bg-[var(--bg)] sm:p-2.5 focus-within:border-[var(--line2)]">
             <input
               type="url"
               required
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="w-0 min-w-0 flex-1 border-0 bg-transparent px-3 py-2 text-[.88rem] font-light text-[var(--ink)] outline-none placeholder:text-[var(--g3)]"
-              placeholder="https://vn.linkedin.com/jobs/view/... hoặc link Upwork, Pickdi..."
+              className="w-full border border-[var(--line)] bg-[var(--bg)] px-4 py-3 text-[.9rem] font-light text-[var(--ink)] outline-none placeholder:text-[var(--g3)] sm:border-0 sm:bg-transparent sm:px-3 sm:py-2"
+              placeholder="https://vn.linkedin.com/jobs/view/... hoặc link Upwork, Pickdi, Workable..."
             />
             <button
               type="submit"
               disabled={loading}
-              className="filter-btn active flex shrink-0 items-center gap-1.5"
+              className="filter-btn active flex shrink-0 items-center justify-center gap-2 px-5 py-3 text-[.6rem] sm:py-2.5"
             >
               {loading && <Loader2 size={13} className="animate-spin" />}
               {loading ? "ĐANG PHÂN TÍCH..." : "BÓC TÁCH & LƯU"}
@@ -87,13 +89,13 @@ export function SmartImporter() {
 
         {result && (
           <div
-            className={`mt-4 flex items-center gap-2 rounded-none border p-3 font-mono text-[.66rem] ${
+            className={`mt-6 flex items-center gap-2.5 border p-4 font-mono text-[.68rem] ${
               result.success
                 ? "border-[var(--accent)] bg-[var(--accent)]/10 text-[var(--accent)]"
                 : "border-red-500/30 bg-red-500/10 text-red-400"
             }`}
           >
-            {result.success ? <CheckCircle2 size={15} /> : <AlertCircle size={15} />}
+            {result.success ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
             <span>{result.message}</span>
           </div>
         )}

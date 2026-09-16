@@ -119,7 +119,7 @@ export default function Home() {
       </div>
 
       {/* section 01: pipeline */}
-      <section id="pipeline" style={{ padding: "clamp(4rem, 8vh, 6.5rem) var(--pad)" }}>
+      <section id="pipeline" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)" }}>
         <div className="sec-head">
           <span className="sec-num mono">01</span>
           <span className="sec-rule" />
@@ -127,11 +127,11 @@ export default function Home() {
           <span className="sec-count mono">44 TOTAL</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-[1rem] md:grid-cols-5 md:gap-[1.4rem]">
+        <div className="mt-8 grid grid-cols-2 gap-[1.2rem] md:grid-cols-5 md:gap-[1.6rem]">
           {pipeline.map((item) => (
             <div
               key={item.label}
-              className="card-crop p-5 transition-colors hover:border-[var(--line2)]"
+              className="card-crop p-6 md:p-7 transition-colors hover:border-[var(--line2)]"
             >
               <p className="mono text-[.54rem] text-[var(--g2)]" style={{ letterSpacing: ".24em" }}>
                 {item.label}
@@ -143,7 +143,7 @@ export default function Home() {
               >
                 {item.count}
               </p>
-              <p className="mono mt-2 text-[.5rem] text-[var(--g3)]" style={{ letterSpacing: ".16em" }}>
+              <p className="mono mt-2 text-[.52rem] text-[var(--g3)]" style={{ letterSpacing: ".16em" }}>
                 {item.desc}
               </p>
             </div>
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* section 02: curated jobs (Interactive Component) */}
-      <section id="jobs" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6.5rem)" }}>
+      <section id="jobs" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
         <div className="sec-head">
           <span className="sec-num mono">02</span>
           <span className="sec-rule" />
@@ -160,11 +160,13 @@ export default function Home() {
           <span className="sec-count mono">9 PLATFORMS</span>
         </div>
 
-        <InteractiveJobs />
+        <div className="mt-8">
+          <InteractiveJobs />
+        </div>
       </section>
 
       {/* section 03: quick URL import (Interactive Component) */}
-      <section id="import" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6.5rem)" }}>
+      <section id="import" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
         <div className="sec-head">
           <span className="sec-num mono">03</span>
           <span className="sec-rule" />
@@ -172,11 +174,13 @@ export default function Home() {
           <span className="sec-count mono">INSTANT PARSE</span>
         </div>
 
-        <SmartImporter />
+        <div className="mt-8">
+          <SmartImporter />
+        </div>
       </section>
 
       {/* section 04: email assistant */}
-      <section id="assistant" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6.5rem)" }}>
+      <section id="assistant" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
         <div className="sec-head">
           <span className="sec-num mono">04</span>
           <span className="sec-rule" />
@@ -184,31 +188,31 @@ export default function Home() {
           <span className="sec-count mono">GMAIL CONNECTED</span>
         </div>
 
-        <div className="border border-[var(--line)] bg-[var(--surface)] p-7 md:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+        <div className="mt-8 border border-[var(--line)] bg-[var(--surface)] p-8 md:p-12 lg:p-14 transition-colors hover:border-[var(--line2)]">
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
             <div>
-              <div className="mb-3 flex items-center gap-3">
+              <div className="mb-4 flex items-center gap-3">
                 <span
-                  className="mono border border-[var(--line)] px-2.5 py-0.5 text-[.52rem] text-[var(--accent)]"
+                  className="mono border border-[var(--line)] px-2.5 py-1 text-[.54rem] text-[var(--accent)]"
                   style={{ letterSpacing: ".18em", borderRadius: "99px" }}
                 >
                   AI ENGINE
                 </span>
-                <span className="mono text-[.54rem] text-[var(--g2)]" style={{ letterSpacing: ".2em" }}>
+                <span className="mono text-[.56rem] text-[var(--g2)]" style={{ letterSpacing: ".2em" }}>
                   4 TEMPLATES · 1-CLICK DRAFT
                 </span>
               </div>
-              <h2 className="display text-[clamp(1.5rem,2.6vw,2.3rem)] text-[var(--ink)]">
+              <h2 className="display text-[clamp(1.5rem,2.8vw,2.3rem)] leading-[1.08] text-[var(--ink)]">
                 Soạn email ứng tuyển<br />
                 chuẩn phong cách <span className="amp">&amp;</span> cá nhân hóa
               </h2>
-              <p className="mt-3.5 max-w-xl text-[clamp(.88rem,1.3vw,1rem)] font-light leading-[1.65] text-[var(--g1)]">
+              <p className="mt-4 max-w-xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.7] text-[var(--g1)]">
                 Tự động đối chiếu Job Description với Portfolio và kinh nghiệm video editor của bạn để tạo thư ứng tuyển, thư follow-up hoặc phản hồi recruiter chuyên nghiệp.
               </p>
             </div>
 
             <div className="flex flex-col gap-4 border-t border-[var(--line)] pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-              <div className="mono text-[.56rem] text-[var(--g2)]" style={{ letterSpacing: ".22em" }}>
+              <div className="mono text-[.58rem] text-[var(--g2)]" style={{ letterSpacing: ".22em" }}>
                 CHỌN MẪU EMAIL:
               </div>
               <div className="flex flex-wrap gap-2">
@@ -246,7 +250,7 @@ export default function Home() {
       </section>
 
       {/* section 05: system integration / status */}
-      <footer id="system" className="border-t border-[var(--line)]" style={{ padding: "clamp(4.5rem, 10vh, 7.5rem) var(--pad) 2rem" }}>
+      <footer id="system" className="border-t border-[var(--line)]" style={{ padding: "clamp(5rem, 12vh, 9rem) var(--pad) 2rem" }}>
         <div className="sec-head">
           <span className="sec-num mono">05</span>
           <span className="sec-rule" />
