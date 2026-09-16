@@ -69,6 +69,7 @@ describe("JobSyncService", () => {
       markSourceSucceeded: vi.fn().mockResolvedValue(undefined),
       markSourceFailed: vi.fn().mockResolvedValue(undefined),
       finishRun: vi.fn().mockResolvedValue(undefined),
+      pruneInactiveJobs: vi.fn().mockResolvedValue(undefined),
     };
 
     const result = await new JobSyncService(repository).sync(adapter);
@@ -86,6 +87,7 @@ describe("JobSyncService", () => {
       markSourceSucceeded: vi.fn(),
       markSourceFailed: vi.fn().mockResolvedValue(undefined),
       finishRun: vi.fn().mockResolvedValue(undefined),
+      pruneInactiveJobs: vi.fn().mockResolvedValue(undefined),
     };
 
     await expect(new JobSyncService(repository).sync(adapter)).rejects.toThrow("upstream unavailable");

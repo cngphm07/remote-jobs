@@ -48,7 +48,7 @@ export class LinkedInAdapter implements JobSourceAdapter {
             skills: ["Video Editing", "LinkedIn"],
             sourceUrl: cleanUrl,
             applyUrl: cleanUrl,
-            publishedAt: dateStr ? new Date(dateStr) : new Date(),
+            publishedAt: dateStr ? new Date(dateStr) : null,
             rawData: { urn, link: cleanUrl },
           });
         });

@@ -45,6 +45,7 @@ export async function POST(request: Request) {
   ];
 
   const results = await service.syncAll(adapters);
+  await service.pruneInactiveJobs();
   const payload = results.map((result, idx) =>
     result.status === "fulfilled"
       ? result.value

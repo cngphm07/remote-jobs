@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger RemoteCut Job Ingestion Cron
+        env:
+          CRON_SECRET: ${{ secrets.REMOTECUT_CRON_SECRET }}
         run: |
-          curl -s -X POST https://remote.oddpig.io.vn/api/cron/jobs \
-            -H "Authorization: Bearer remotecut_cron_sync_secret_2026" || true
+          test -n "$CRON_SECRET"
+          curl --fail-with-body --silent --show-error -X POST https://remote.oddpig.io.vn/api/cron/jobs \
+            -H "Authorization: Bearer $CRON_SECRET"

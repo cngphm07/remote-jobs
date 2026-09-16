@@ -2,6 +2,7 @@ import { Sparkles } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 import { InteractiveJobs } from "@/components/interactive-jobs";
 import { SmartImporter } from "@/components/smart-importer";
+import { getActiveRecentJobs, getLatestJobSyncSummary } from "@/lib/jobs/queries";
 
 const pipeline = [
   { label: "SAVED", count: 18, desc: "Đã lưu", accent: false },
@@ -11,7 +12,42 @@ const pipeline = [
   { label: "INTERVIEW", count: 3, desc: "Phỏng vấn", accent: false },
 ];
 
-export default function Home() {
+function relativeTime(date: Date) {
+  const minutes = Math.max(0, Math.floor((Date.now() - date.getTime()) / 60_000));
+  if (minutes < 60) return `${minutes || 1}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  return `${Math.floor(hours / 24)}d ago`;
+}
+
+export default async function Home() {
+  let activeJobs: Awaited<ReturnType<typeof getActiveRecentJobs>> = [];
+  let latestSync: Awaited<ReturnType<typeof getLatestJobSyncSummary>> = null;
+
+  try {
+    [activeJobs, latestSync] = await Promise.all([
+      getActiveRecentJobs(),
+      getLatestJobSyncSummary(),
+    ]);
+  } catch {
+    // Database setup or sync may not be ready yet; show the explicit empty state instead of stale fixtures.
+  }
+
+  const jobs = activeJobs.map((job) => ({
+    id: job.id,
+    company: job.company.name,
+    title: job.title,
+    location: job.location,
+    time: relativeTime(job.publishedAt || job.lastSeenAt),
+    source: job.source.name,
+    sourceKey: job.source.key,
+    salary: job.salaryMin || job.salaryMax
+      ? `${job.salaryCurrency || "$"}${job.salaryMin?.toLocaleString() || ""}${job.salaryMin && job.salaryMax ? " – " : ""}${job.salaryMax ? `${job.salaryCurrency || "$"}${job.salaryMax.toLocaleString()}` : ""}`
+      : null,
+    skills: job.skills.join(" · "),
+    sourceUrl: job.applyUrl || job.sourceUrl,
+  }));
+
   return (
     <>
       {/* film grain overlay */}
@@ -31,7 +67,7 @@ export default function Home() {
         </nav>
         <div className="flex items-center gap-4">
           <p className="tc mono hidden md:block" aria-hidden="true">
-            SYNC: 3H · 9 SOURCES
+            {latestSync?.finishedAt ? `SYNC: ${relativeTime(latestSync.finishedAt)} · ${latestSync.acceptedCount} JOBS` : "SYNC: WAITING · 9 SOURCES"}
           </p>
           <AuthButton />
         </div>
@@ -67,12 +103,12 @@ export default function Home() {
           {/* hero meta */}
           <div className="hero-meta mono">
             <div>
-              <b className="display text-[var(--ink)]">380+</b>
-              <span>ROLES</span>
+              <b className="display text-[var(--ink)]">{jobs.length}</b>
+              <span>ACTIVE ROLES</span>
             </div>
             <div>
-              <b className="display text-[var(--ink)]">9</b>
-              <span>SOURCES</span>
+              <b className="display text-[var(--ink)]">{new Set(jobs.map((job) => job.sourceKey)).size}</b>
+              <span>ACTIVE SOURCES</span>
             </div>
             <div>
               <b className="display text-[var(--accent)]">3H</b>
@@ -161,7 +197,7 @@ export default function Home() {
         </div>
 
         <div className="mt-8">
-          <InteractiveJobs />
+          <InteractiveJobs jobs={jobs} />
         </div>
       </section>
 

@@ -19,8 +19,6 @@ export class OnlineJobsPhAdapter implements JobSourceAdapter {
         const link = $(el).find("a[href*='/jobseekers/job/']").first().attr("href") || "";
         const desc = $(el).find(".desc, p").first().text().trim();
         const salary = $(el).find(".salary, .badge-salary, [class*='salary']").first().text().trim() || null;
-        const postedDate = $(el).find(".date, .posted-date, small").first().text().trim();
-
         if (!title || !link) return;
 
         const fullUrl = link.startsWith("http") ? link : `https://www.onlinejobs.ph${link}`;
@@ -41,7 +39,8 @@ export class OnlineJobsPhAdapter implements JobSourceAdapter {
           skills: ["Video Editing", "Premiere Pro", "OnlineJobs"],
           sourceUrl: fullUrl,
           applyUrl: fullUrl,
-          publishedAt: postedDate ? new Date() : new Date(),
+          // The source date is human-readable and cannot be reliably parsed without locale context.
+          publishedAt: null,
           rawData: { link: fullUrl, title },
         });
       });

@@ -57,7 +57,7 @@ export class WorkableAdapter implements JobSourceAdapter {
           skills: ["Video Editing", "Workable"],
           sourceUrl: link,
           applyUrl: job.application_url || link,
-          publishedAt: job.created_at ? new Date(job.created_at) : new Date(),
+          publishedAt: job.created_at ? new Date(job.created_at) : null,
           rawData: job,
         };
       });

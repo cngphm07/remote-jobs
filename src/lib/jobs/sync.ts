@@ -1,6 +1,6 @@
 import type { Prisma, PrismaClient } from "@prisma/client";
 import { dedupeJobs } from "./dedupe";
-import { filterRelevantJobs } from "./filter";
+import { filterRelevantJobs, isActiveRecentJob } from "./filter";
 import { normalizeJob } from "./normalize";
 import type { JobSourceAdapter, JobSourceKey, JobSyncRepository, NormalizedJob, SyncStats } from "./types";
 
@@ -57,6 +57,10 @@ export class JobSyncService {
   async syncAll(adapters: JobSourceAdapter[]): Promise<PromiseSettledResult<SyncResult>[]> {
     return Promise.allSettled(adapters.map((adapter) => this.sync(adapter)));
   }
+
+  async pruneInactiveJobs(now = new Date()): Promise<void> {
+    await this.repository.pruneInactiveJobs(now);
+  }
 }
 
 export class PrismaJobSyncRepository implements JobSyncRepository {
@@ -81,7 +85,12 @@ export class PrismaJobSyncRepository implements JobSyncRepository {
       select: { id: true, contentHash: true },
     });
     if (existing?.contentHash === job.contentHash) {
-      await this.prisma.job.update({ where: { id: existing.id }, data: { lastSeenAt: new Date(), isActive: true, staleAt: null } });
+      const now = new Date();
+      const active = isActiveRecentJob(job, now);
+      await this.prisma.job.update({
+        where: { id: existing.id },
+        data: { lastSeenAt: now, isActive: active, staleAt: active ? null : now },
+      });
       return "skipped";
     }
 
@@ -105,6 +114,20 @@ export class PrismaJobSyncRepository implements JobSyncRepository {
 
   async markSourceFailed(source: JobSourceKey, message: string): Promise<void> {
     await this.prisma.jobSource.update({ where: { key: source }, data: { lastSyncedAt: new Date(), lastError: message } });
+  }
+
+  async pruneInactiveJobs(now: Date): Promise<void> {
+    const staleCutoff = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    await this.prisma.job.updateMany({
+      where: {
+        isActive: true,
+        OR: [
+          { expiresAt: { lte: now } },
+          { lastSeenAt: { lt: staleCutoff } },
+        ],
+      },
+      data: { isActive: false, staleAt: now },
+    });
   }
 
   async finishRun(runId: string, stats: SyncStats, errorMessage?: string): Promise<void> {
@@ -153,8 +176,8 @@ export class PrismaJobSyncRepository implements JobSyncRepository {
       publishedAt: job.publishedAt,
       expiresAt: job.expiresAt,
       lastSeenAt: new Date(),
-      isActive: true,
-      staleAt: null,
+      isActive: isActiveRecentJob(job),
+      staleAt: isActiveRecentJob(job) ? null : new Date(),
       contentHash: job.contentHash,
       fingerprint: job.fingerprint,
       rawData: job.rawData as Prisma.InputJsonValue | undefined,

@@ -23,6 +23,18 @@ export function isRelevantVideoJob(job: Pick<NormalizedJob, "title" | "descripti
   return hasVideo && hasEditing;
 }
 
-export function filterRelevantJobs(jobs: NormalizedJob[]): NormalizedJob[] {
-  return jobs.filter(isRelevantVideoJob);
+const MAX_PUBLISHED_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+
+/** A job can be shown only when it has not expired and its known publication date is recent. */
+export function isActiveRecentJob(
+  job: Pick<NormalizedJob, "publishedAt" | "expiresAt">,
+  now = new Date(),
+): boolean {
+  if (job.expiresAt && job.expiresAt <= now) return false;
+  if (job.publishedAt && now.getTime() - job.publishedAt.getTime() > MAX_PUBLISHED_AGE_MS) return false;
+  return true;
+}
+
+export function filterRelevantJobs(jobs: NormalizedJob[], now = new Date()): NormalizedJob[] {
+  return jobs.filter(isRelevantVideoJob).filter((job) => isActiveRecentJob(job, now));
 }

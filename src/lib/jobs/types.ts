@@ -80,4 +80,5 @@ export interface JobSyncRepository {
   markSourceSucceeded(source: JobSourceKey, seenAt: Date): Promise<void>;
   markSourceFailed(source: JobSourceKey, message: string): Promise<void>;
   finishRun(runId: string, stats: SyncStats, errorMessage?: string): Promise<void>;
+  pruneInactiveJobs(now: Date): Promise<void>;
 }

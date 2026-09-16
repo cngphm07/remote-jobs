@@ -39,6 +39,7 @@ export async function parseJobUrl(targetUrl: string): Promise<ParsedJobResult> {
   let salary: string | null = null;
   let location = "Remote / Worldwide";
   let publishedAt: Date | null = null;
+  let expiresAt: Date | null = null;
   let employmentType: string | null = null;
   const skills: string[] = [];
 
@@ -56,6 +57,7 @@ export async function parseJobUrl(targetUrl: string): Promise<ParsedJobResult> {
           if (item.hiringOrganization?.name && !company) company = String(item.hiringOrganization.name).trim();
           if (item.description && !description) description = String(item.description).trim();
           if (item.datePosted && !publishedAt) publishedAt = new Date(item.datePosted);
+          if (item.validThrough && !expiresAt) expiresAt = new Date(item.validThrough);
           if (item.employmentType && !employmentType) employmentType = String(item.employmentType);
 
           if (item.baseSalary?.value) {
@@ -162,7 +164,8 @@ export async function parseJobUrl(targetUrl: string): Promise<ParsedJobResult> {
     skills,
     sourceUrl: cleanUrl,
     applyUrl: cleanUrl,
-    publishedAt: publishedAt || new Date(),
+    publishedAt,
+    expiresAt,
     rawData: { url: cleanUrl, parsedAt: new Date().toISOString() },
   };
 

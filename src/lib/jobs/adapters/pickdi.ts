@@ -39,7 +39,7 @@ export class PickdiAdapter implements JobSourceAdapter {
           skills: ["Video Editing", "Social Video", "Pickdi"],
           sourceUrl: fullUrl,
           applyUrl: fullUrl,
-          publishedAt: new Date(),
+          publishedAt: null,
           rawData: { link: fullUrl, title },
         });
       });

@@ -15,6 +15,7 @@ interface HimalayasJob {
   applicationLink?: string;
   guid?: string;
   pubDate?: string | number;
+  expiryDate?: string | number;
   categories?: string[];
   skills?: Array<string | { name?: string }>;
 }
@@ -58,6 +59,7 @@ export class HimalayasAdapter implements JobSourceAdapter {
         sourceUrl,
         applyUrl: job.applicationLink || sourceUrl,
         publishedAt: job.pubDate ? new Date(job.pubDate) : null,
+        expiresAt: job.expiryDate ? new Date(job.expiryDate) : null,
         rawData: job,
       };
     });
