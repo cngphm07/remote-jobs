@@ -47,7 +47,7 @@ export function SmartImporter() {
   };
 
   return (
-    <div className="border border-[var(--line)] bg-[var(--surface)] p-8 md:p-12 lg:p-14 transition-colors hover:border-[var(--line2)]">
+    <div className="border border-[var(--line)] bg-[var(--surface)] p-7 md:p-9 lg:p-10 transition-colors hover:border-[var(--line2)]">
       <div className="max-w-3xl">
         <div className="mb-4 flex items-center gap-2.5">
           <Link2 size={15} className="text-[var(--accent)]" />

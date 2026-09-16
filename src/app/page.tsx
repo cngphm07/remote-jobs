@@ -119,7 +119,7 @@ export default function Home() {
       </div>
 
       {/* section 01: pipeline */}
-      <section id="pipeline" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)" }}>
+      <section id="pipeline" style={{ padding: "clamp(3.5rem, 7vh, 5.5rem) var(--pad)" }}>
         <div className="sec-head">
           <span className="sec-num mono">01</span>
           <span className="sec-rule" />
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* section 02: curated jobs (Interactive Component) */}
-      <section id="jobs" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
+      <section id="jobs" style={{ padding: "clamp(3.5rem, 7vh, 5.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
         <div className="sec-head">
           <span className="sec-num mono">02</span>
           <span className="sec-rule" />
@@ -166,7 +166,7 @@ export default function Home() {
       </section>
 
       {/* section 03: quick URL import (Interactive Component) */}
-      <section id="import" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
+      <section id="import" style={{ padding: "clamp(3.5rem, 7vh, 5.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
         <div className="sec-head">
           <span className="sec-num mono">03</span>
           <span className="sec-rule" />
@@ -180,7 +180,7 @@ export default function Home() {
       </section>
 
       {/* section 04: email assistant */}
-      <section id="assistant" style={{ padding: "clamp(5rem, 11vh, 8.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
+      <section id="assistant" style={{ padding: "clamp(3.5rem, 7vh, 5.5rem) var(--pad)", borderTop: "1px solid var(--line)" }}>
         <div className="sec-head">
           <span className="sec-num mono">04</span>
           <span className="sec-rule" />
@@ -188,7 +188,7 @@ export default function Home() {
           <span className="sec-count mono">GMAIL CONNECTED</span>
         </div>
 
-        <div className="mt-8 border border-[var(--line)] bg-[var(--surface)] p-8 md:p-12 lg:p-14 transition-colors hover:border-[var(--line2)]">
+        <div className="mt-7 border border-[var(--line)] bg-[var(--surface)] p-7 md:p-9 lg:p-10 transition-colors hover:border-[var(--line2)]">
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
             <div>
               <div className="mb-4 flex items-center gap-3">
