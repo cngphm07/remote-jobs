@@ -1,0 +1,15 @@
+name: Sync Remote Jobs (Every 3 Hours)
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger RemoteCut Job Ingestion Cron
+        run: |
+          curl -s -X POST https://remote-jobs-omega.vercel.app/remote/api/cron/jobs \
+            -H "Authorization: Bearer remotecut_cron_sync_secret_2026" || true
