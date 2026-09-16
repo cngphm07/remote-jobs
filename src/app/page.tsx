@@ -3,73 +3,73 @@ import { AuthButton } from "@/components/auth-button";
 
 const sampleJobs = [
   {
-    company: "The Frameless (Pickdi)",
-    title: "Remote Video Editor (Edit Video Quảng Cáo Social & Reels)",
+    company: "The Frameless",
+    title: "Remote Video Editor — Social Ads & Short-form Content",
     location: "Vietnam · Remote",
-    time: "30 phút trước",
+    time: "30m ago",
     source: "Pickdi",
-    salary: "~25.000.000 ₫ / tháng",
-    tags: ["Premiere Pro", "CapCut", "Social Ads", "Pacing", "Short-form"],
+    salary: "~25.000.000 ₫ / mo",
+    skills: "Premiere Pro · CapCut · Social Ads · Pacing · Reels",
     sourceUrl: "https://pickdi.com",
   },
   {
-    company: "Jobs AI (LinkedIn)",
-    title: "Remote Video Editor (AI Video & Social Content)",
+    company: "Jobs AI",
+    title: "Video Editor & AI Workflow Specialist",
     location: "Worldwide · Remote",
-    time: "1 giờ trước",
+    time: "1h ago",
     source: "LinkedIn",
-    salary: "$2,800 – $3,800 / tháng",
-    tags: ["Premiere Pro", "After Effects", "AI Video", "English"],
+    salary: "$2,800 – $3,800 / mo",
+    skills: "Premiere Pro · After Effects · AI Video · English",
     sourceUrl: "https://vn.linkedin.com",
   },
   {
-    company: "Real Estate Media (Upwork)",
-    title: "Real Estate & Event Video Editor (DaVinci Resolve)",
+    company: "Real Estate Media Group",
+    title: "Senior Real Estate & Event Video Editor",
     location: "US Client · Remote",
-    time: "2 giờ trước",
+    time: "2h ago",
     source: "Upwork",
-    salary: "$35 – $50 / giờ",
-    tags: ["DaVinci Resolve", "Color Grading", "Real Estate", "Sound Design"],
+    salary: "$35 – $50 / hr",
+    skills: "DaVinci Resolve · Color Grading · Sound Design",
     sourceUrl: "https://www.upwork.com",
   },
   {
-    company: "Activate Talent (Workable)",
-    title: "Remote Video Editor (Vietnam & Global Creative Team)",
+    company: "Activate Talent",
+    title: "Creative Video Editor & Motion Designer",
     location: "Vietnam · Remote",
-    time: "3 giờ trước",
+    time: "3h ago",
     source: "Workable",
-    salary: "$1,800 – $2,500 / tháng",
-    tags: ["Video Editing", "Motion Graphics", "Commercial", "Storytelling"],
+    salary: "$1,800 – $2,500 / mo",
+    skills: "Motion Graphics · Commercial TVC · Storytelling",
     sourceUrl: "https://jobs.workable.com",
   },
   {
-    company: "Spiralyze (Himalayas)",
-    title: "Video Editor (LinkedIn & B2B Growth Content)",
+    company: "Spiralyze",
+    title: "B2B Growth Content & LinkedIn Video Editor",
     location: "Worldwide · Remote",
-    time: "4 giờ trước",
+    time: "4h ago",
     source: "Himalayas",
-    salary: "$2,500 – $3,500 / tháng",
-    tags: ["B2B Video", "Motion Design", "After Effects", "English"],
+    salary: "$2,500 – $3,500 / mo",
+    skills: "After Effects · Motion Design · B2B Narrative",
     sourceUrl: "https://himalayas.app",
   },
   {
-    company: "Australian Studio (OnlineJobs)",
-    title: "Full-time Real Estate & YouTube Video Editor",
-    location: "Australia / APAC · Remote",
-    time: "5 giờ trước",
+    company: "Studio Ten Australia",
+    title: "Full-time YouTube & Documentary Video Editor",
+    location: "APAC Timezone · Remote",
+    time: "5h ago",
     source: "OnlineJobs.ph",
-    salary: "$1,600 – $2,200 / tháng",
-    tags: ["Premiere Pro", "Final Cut Pro", "YouTube", "Color Grade"],
+    salary: "$1,600 – $2,200 / mo",
+    skills: "Premiere Pro · Final Cut · Documentary · Grading",
     sourceUrl: "https://www.onlinejobs.ph",
   },
 ];
 
 const pipeline = [
-  { label: "SAVED", count: 18, desc: "Việc đã lưu", accent: false },
-  { label: "PREPARING", count: 6, desc: "Đang soạn email", accent: false },
+  { label: "SAVED", count: 18, desc: "Đã lưu", accent: false },
+  { label: "PREPARING", count: 6, desc: "Đang soạn", accent: false },
   { label: "APPLIED", count: 12, desc: "Đã gửi hồ sơ", accent: true },
-  { label: "REPLIED", count: 5, desc: "Recruiter phản hồi", accent: false },
-  { label: "INTERVIEW", count: 3, desc: "Lịch phỏng vấn", accent: false },
+  { label: "REPLIED", count: 5, desc: "Có phản hồi", accent: false },
+  { label: "INTERVIEW", count: 3, desc: "Phỏng vấn", accent: false },
 ];
 
 export default function Home() {
@@ -106,14 +106,14 @@ export default function Home() {
           <span className="hf hf-tr" />
           <span className="hf hf-bl" />
           <span className="hf hf-br" />
-          <span className="hero-side mono">REMOTECUT — AUTO SYNC</span>
+          <span className="hero-side mono">REMOTECUT — 2026</span>
           <span className="hero-side-r mono">EVERY 3 HOURS · GLOBAL</span>
         </div>
 
         <div className="relative z-[3]">
           <p className="hero-kicker mono">
             <Sparkles size={11} className="mr-2 inline-block text-[var(--accent)]" />
-            AUTO CURATED EVERY 3 HOURS — WORLDWIDE 2026
+            AUTOMATED REEL — CURATED WORLDWIDE
           </p>
 
           <h1 className="hero-title display">
@@ -122,24 +122,24 @@ export default function Home() {
           </h1>
 
           <p className="hero-desc">
-            Hệ thống tự động tìm kiếm, chuẩn hóa và tổng hợp việc làm <b>Video Editor Remote</b> từ <b>LinkedIn, Upwork, Pickdi, Workable, Himalayas, OnlineJobs.ph, Remotive, Remote OK, Arbeitnow</b>. Tự động đồng bộ mỗi 3 giờ, hỗ trợ AI soạn thảo email ứng tuyển và liên kết 2 chiều với Gmail.
+            Hệ thống tự động tổng hợp việc làm <b>Video Editor Remote</b> toàn cầu từ <b>LinkedIn, Upwork, Pickdi, Workable, Himalayas, OnlineJobs</b>. Tự động đồng bộ mỗi 3 giờ, hỗ trợ AI soạn thảo email ứng tuyển cá nhân hóa và đồng bộ 2 chiều với Gmail.
           </p>
 
           {/* search box */}
           <div className="mt-8 flex max-w-2xl items-center border border-[var(--line)] bg-[var(--surface)] p-2 transition-colors focus-within:border-[var(--line2)]">
-            <Search className="ml-2 hidden shrink-0 text-[var(--g3)] sm:block" size={18} />
+            <Search className="ml-2 hidden shrink-0 text-[var(--g3)] sm:block" size={17} />
             <input
-              className="w-0 min-w-0 flex-1 border-0 bg-transparent px-3 py-2 text-[.92rem] font-light text-[var(--ink)] outline-none placeholder:text-[var(--g3)]"
-              placeholder="Tìm theo kỹ năng (Premiere, DaVinci, AE, CapCut) hoặc công ty..."
+              className="w-0 min-w-0 flex-1 border-0 bg-transparent px-3 py-2 text-[.9rem] font-light text-[var(--ink)] outline-none placeholder:text-[var(--g3)]"
+              placeholder="Tìm vị trí, kỹ năng (Premiere, DaVinci, AE, CapCut) hoặc công ty..."
             />
-            <button className="filter-btn active shrink-0">TÌM JOB</button>
+            <button className="filter-btn active shrink-0">TÌM KIẾM</button>
           </div>
 
           {/* hero meta */}
           <div className="hero-meta mono">
             <div>
               <b className="display text-[var(--ink)]">380+</b>
-              <span>TOTAL ROLES</span>
+              <span>ROLES</span>
             </div>
             <div>
               <b className="display text-[var(--ink)]">9</b>
@@ -186,38 +186,35 @@ export default function Home() {
           <span className="sep">✦</span>
           <span>ARBEITNOW</span>
           <span className="sep">✦</span>
-          <span>PICKDI CREATIVE</span>
-          <span className="sep">✦</span>
-          <span>LINKEDIN JOBS</span>
-          <span className="sep">✦</span>
-          <span>UPWORK FEED</span>
-          <span className="sep">✦</span>
         </div>
       </div>
 
       {/* section 01: pipeline */}
-      <section id="pipeline" style={{ padding: "clamp(4.5rem, 9vh, 7rem) var(--pad)" }}>
+      <section id="pipeline" style={{ padding: "clamp(4rem, 8vh, 6.5rem) var(--pad)" }}>
         <div className="sec-head">
           <span className="sec-num mono">01</span>
           <span className="sec-rule" />
           <span className="sec-title mono">APPLICATION PIPELINE</span>
-          <span className="sec-count mono">5 STAGES · 44 TOTAL</span>
+          <span className="sec-count mono">44 TOTAL</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-[1.4rem] md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-[1rem] md:grid-cols-5 md:gap-[1.4rem]">
           {pipeline.map((item) => (
-            <div key={item.label} className="card-crop p-6">
-              <p className="mono text-[.58rem] text-[var(--g2)]" style={{ letterSpacing: ".28em" }}>
+            <div
+              key={item.label}
+              className="card-crop p-5 transition-colors hover:border-[var(--line2)]"
+            >
+              <p className="mono text-[.54rem] text-[var(--g2)]" style={{ letterSpacing: ".24em" }}>
                 {item.label}
               </p>
               <p
-                className={`display mt-5 text-[clamp(2.2rem,3.8vw,3.2rem)] ${
+                className={`display mt-4 text-[clamp(2rem,3.4vw,2.8rem)] ${
                   item.accent ? "text-[var(--accent)]" : "text-[var(--ink)]"
                 }`}
               >
                 {item.count}
               </p>
-              <p className="mono mt-3 text-[.52rem] text-[var(--g3)]" style={{ letterSpacing: ".2em" }}>
+              <p className="mono mt-2 text-[.5rem] text-[var(--g3)]" style={{ letterSpacing: ".16em" }}>
                 {item.desc}
               </p>
             </div>
@@ -226,12 +223,12 @@ export default function Home() {
       </section>
 
       {/* section 02: curated jobs */}
-      <section id="jobs" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6rem)" }}>
+      <section id="jobs" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6.5rem)" }}>
         <div className="sec-head">
           <span className="sec-num mono">02</span>
           <span className="sec-rule" />
           <span className="sec-title mono">CURATED JOBS (UPDATED EVERY 3H)</span>
-          <span className="sec-count mono">9 SOURCES INTEGRATED</span>
+          <span className="sec-count mono">9 PLATFORMS</span>
         </div>
 
         {/* filters */}
@@ -257,73 +254,63 @@ export default function Home() {
           <button className="filter-btn">
             ONLINEJOBS <span className="count mono">45</span>
           </button>
-          <button className="filter-btn">
-            REMOTIVE <span className="count mono">59</span>
-          </button>
+          <button className="filter-btn">REMOTIVE</button>
           <button className="filter-btn">REMOTE OK</button>
-          <button className="filter-btn">ARBEITNOW</button>
         </div>
 
-        {/* job grid */}
-        <div className="grid gap-[1.4rem] md:grid-cols-2">
+        {/* editorial job list */}
+        <div className="flex flex-col border-t border-[var(--line)]">
           {sampleJobs.map((job) => (
-            <article key={job.title} className="card-crop group p-7">
-              <div className="flex items-start justify-between gap-4">
+            <article
+              key={job.title}
+              className="group flex flex-col justify-between gap-4 border-b border-[var(--line)] py-6 transition-colors hover:bg-white/[0.015] md:flex-row md:items-center md:py-7"
+            >
+              {/* left column: meta & title */}
+              <div className="flex-1 pr-4">
                 <div className="flex items-center gap-3">
-                  <div className="display grid size-10 shrink-0 place-items-center bg-[var(--g3)] text-[.9rem] text-[var(--ink)]">
-                    {job.company.slice(0, 1)}
-                  </div>
-                  <div>
-                    <p className="mono text-[.58rem] text-[var(--g1)]" style={{ letterSpacing: ".22em" }}>
-                      {job.company}
-                    </p>
-                    <p className="mono text-[.52rem] text-[var(--accent)]" style={{ letterSpacing: ".18em" }}>
-                      VIA {job.source.toUpperCase()}
-                    </p>
-                  </div>
+                  <span className="mono text-[.56rem] text-[var(--g1)]" style={{ letterSpacing: ".2em" }}>
+                    {job.company}
+                  </span>
+                  <span className="text-[.6rem] text-[var(--g3)]">/</span>
+                  <span className="mono text-[.54rem] text-[var(--accent)]" style={{ letterSpacing: ".18em" }}>
+                    {job.source.toUpperCase()}
+                  </span>
+                  <span className="text-[.6rem] text-[var(--g3)]">/</span>
+                  <span className="mono text-[.52rem] text-[var(--g3)]" style={{ letterSpacing: ".14em" }}>
+                    {job.time}
+                  </span>
                 </div>
+
+                <h3 className="mt-2.5 text-[1.12rem] font-normal leading-snug text-[var(--ink)] transition-colors group-hover:text-white md:text-[1.25rem]">
+                  {job.title}
+                </h3>
+
+                <p className="mono mt-2 text-[.64rem] text-[var(--g2)]" style={{ letterSpacing: ".08em" }}>
+                  {job.skills}
+                </p>
+              </div>
+
+              {/* right column: salary, location & action */}
+              <div className="flex items-center justify-between gap-6 border-t border-[var(--line)] pt-3 md:flex-col md:items-end md:border-t-0 md:pt-0">
+                <div className="text-left md:text-right">
+                  <p className="mono text-[.88rem] font-medium text-[var(--ink)]" style={{ letterSpacing: ".02em" }}>
+                    {job.salary}
+                  </p>
+                  <p className="mono mt-1 text-[.52rem] text-[var(--g2)]" style={{ letterSpacing: ".16em" }}>
+                    {job.location}
+                  </p>
+                </div>
+
                 <a
                   href={job.sourceUrl}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Mở chi tiết job"
-                  className="grid size-9 shrink-0 place-items-center border border-[var(--line)] text-[var(--g1)] transition-all group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-[#000]"
+                  className="inline-flex items-center gap-1.5 border border-[var(--line)] px-3 py-1.5 text-[.56rem] font-mono text-[var(--g1)] transition-all group-hover:border-[var(--accent)] group-hover:text-[var(--accent)]"
+                  style={{ letterSpacing: ".16em" }}
                 >
-                  <ArrowUpRight size={15} />
+                  APPLY <ArrowUpRight size={13} />
                 </a>
-              </div>
-
-              <h3
-                className="mt-5 text-[clamp(1.15rem,1.8vw,1.35rem)] font-normal leading-[1.3] text-[var(--ink)]"
-                style={{ letterSpacing: "-.01em" }}
-              >
-                {job.title}
-              </h3>
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                {job.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="mono border border-[var(--line)] px-2.5 py-1 text-[.52rem] text-[var(--g1)]"
-                    style={{ letterSpacing: ".18em", borderRadius: "99px" }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-6 flex items-end justify-between border-t border-[var(--line)] pt-4">
-                <div>
-                  <p className="display text-[1.15rem] text-[var(--ink)]" style={{ letterSpacing: "-.01em" }}>
-                    {job.salary}
-                  </p>
-                  <p className="mono mt-1 text-[.54rem] text-[var(--g2)]" style={{ letterSpacing: ".2em" }}>
-                    {job.location}
-                  </p>
-                </div>
-                <p className="mono text-[.54rem] text-[var(--g3)]" style={{ letterSpacing: ".16em" }}>
-                  {job.time}
-                </p>
               </div>
             </article>
           ))}
@@ -331,28 +318,28 @@ export default function Home() {
       </section>
 
       {/* section 03: quick URL import */}
-      <section id="import" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6rem)" }}>
+      <section id="import" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6.5rem)" }}>
         <div className="sec-head">
           <span className="sec-num mono">03</span>
           <span className="sec-rule" />
-          <span className="sec-title mono">SMART SINGLE URL IMPORTER</span>
-          <span className="sec-count mono">PASTE ANY JOB LINK</span>
+          <span className="sec-title mono">SMART URL IMPORTER</span>
+          <span className="sec-count mono">INSTANT PARSE</span>
         </div>
 
-        <div className="card-crop p-8 md:p-10">
+        <div className="border border-[var(--line)] bg-[var(--surface)] p-7 md:p-10">
           <div className="max-w-2xl">
             <div className="mb-3 flex items-center gap-2">
-              <Link2 size={16} className="text-[var(--accent)]" />
-              <span className="mono text-[.58rem] text-[var(--accent)]" style={{ letterSpacing: ".24em" }}>
+              <Link2 size={15} className="text-[var(--accent)]" />
+              <span className="mono text-[.56rem] text-[var(--accent)]" style={{ letterSpacing: ".22em" }}>
                 HỖ TRỢ LINK TỪ MỌI NỀN TẢNG
               </span>
             </div>
-            <h2 className="display text-[clamp(1.4rem,2.5vw,2.2rem)] text-[var(--ink)]">
+            <h2 className="display text-[clamp(1.4rem,2.4vw,2.1rem)] text-[var(--ink)]">
               Dán link bài tuyển dụng bất kỳ<br />
               để tự động bóc tách <span className="amp">&amp;</span> lưu trữ
             </h2>
             <p className="mt-3 text-[.88rem] font-light leading-relaxed text-[var(--g2)]">
-              Tự động phân tích Schema JSON-LD, OpenGraph và bóc tách Tiêu đề, Công ty, Mức lương, Kỹ năng từ link LinkedIn, Upwork, Pickdi, Workable, Indeed, OnlineJobs.ph, Facebook Group...
+              Tự động phân tích Schema JSON-LD, OpenGraph và trích xuất Tiêu đề, Công ty, Mức lương, Kỹ năng từ link LinkedIn, Upwork, Pickdi, Workable, Indeed, OnlineJobs.ph...
             </p>
 
             {/* URL input form */}
@@ -368,7 +355,7 @@ export default function Home() {
       </section>
 
       {/* section 04: email assistant */}
-      <section id="assistant" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6rem)" }}>
+      <section id="assistant" style={{ padding: "0 var(--pad) clamp(4rem, 8vh, 6.5rem)" }}>
         <div className="sec-head">
           <span className="sec-num mono">04</span>
           <span className="sec-rule" />
@@ -376,61 +363,58 @@ export default function Home() {
           <span className="sec-count mono">GMAIL CONNECTED</span>
         </div>
 
-        <div className="card-crop p-8 md:p-12">
+        <div className="border border-[var(--line)] bg-[var(--surface)] p-7 md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center">
             <div>
-              <div className="mb-4 flex items-center gap-3">
+              <div className="mb-3 flex items-center gap-3">
                 <span
-                  className="mono border border-[var(--line)] px-2.5 py-1 text-[.52rem] text-[var(--accent)]"
-                  style={{ letterSpacing: ".2em", borderRadius: "99px" }}
+                  className="mono border border-[var(--line)] px-2.5 py-0.5 text-[.52rem] text-[var(--accent)]"
+                  style={{ letterSpacing: ".18em", borderRadius: "99px" }}
                 >
-                  AI GENERATOR
+                  AI ENGINE
                 </span>
-                <span className="mono text-[.56rem] text-[var(--g2)]" style={{ letterSpacing: ".22em" }}>
+                <span className="mono text-[.54rem] text-[var(--g2)]" style={{ letterSpacing: ".2em" }}>
                   4 TEMPLATES · 1-CLICK DRAFT
                 </span>
               </div>
-              <h2 className="display text-[clamp(1.6rem,3vw,2.6rem)] text-[var(--ink)]">
+              <h2 className="display text-[clamp(1.5rem,2.6vw,2.3rem)] text-[var(--ink)]">
                 Soạn email ứng tuyển<br />
                 chuẩn phong cách <span className="amp">&amp;</span> cá nhân hóa
               </h2>
-              <p
-                className="mt-4 max-w-xl text-[clamp(.92rem,1.4vw,1.05rem)] font-light leading-[1.65] text-[var(--g1)]"
-                style={{ letterSpacing: "-.005em" }}
-              >
-                Tự động phân tích Job Description, đối chiếu với Portfolio và kinh nghiệm video editor của bạn để tạo thư ứng tuyển, thư follow-up hoặc phản hồi recruiter chuyên nghiệp.
+              <p className="mt-3.5 max-w-xl text-[clamp(.88rem,1.3vw,1rem)] font-light leading-[1.65] text-[var(--g1)]">
+                Tự động đối chiếu Job Description với Portfolio và kinh nghiệm video editor của bạn để tạo thư ứng tuyển, thư follow-up hoặc phản hồi recruiter chuyên nghiệp.
               </p>
             </div>
 
             <div className="flex flex-col gap-4 border-t border-[var(--line)] pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-              <div className="mono text-[.58rem] text-[var(--g2)]" style={{ letterSpacing: ".24em" }}>
+              <div className="mono text-[.56rem] text-[var(--g2)]" style={{ letterSpacing: ".22em" }}>
                 CHỌN MẪU EMAIL:
               </div>
               <div className="flex flex-wrap gap-2">
                 <span
-                  className="mono border border-[var(--line)] px-3 py-1.5 text-[.56rem] text-[var(--ink)]"
-                  style={{ letterSpacing: ".16em", borderRadius: "99px" }}
+                  className="mono border border-[var(--line)] px-3 py-1.5 text-[.54rem] text-[var(--ink)]"
+                  style={{ letterSpacing: ".14em", borderRadius: "99px" }}
                 >
                   01. FIRST APPLICATION
                 </span>
                 <span
-                  className="mono border border-[var(--line)] px-3 py-1.5 text-[.56rem] text-[var(--g1)]"
-                  style={{ letterSpacing: ".16em", borderRadius: "99px" }}
+                  className="mono border border-[var(--line)] px-3 py-1.5 text-[.54rem] text-[var(--g1)]"
+                  style={{ letterSpacing: ".14em", borderRadius: "99px" }}
                 >
                   02. FOLLOW-UP
                 </span>
                 <span
-                  className="mono border border-[var(--line)] px-3 py-1.5 text-[.56rem] text-[var(--g1)]"
-                  style={{ letterSpacing: ".16em", borderRadius: "99px" }}
+                  className="mono border border-[var(--line)] px-3 py-1.5 text-[.54rem] text-[var(--g1)]"
+                  style={{ letterSpacing: ".14em", borderRadius: "99px" }}
                 >
                   03. RECRUITER REPLY
                 </span>
               </div>
-              <div className="mt-4">
+              <div className="mt-3">
                 <a
                   href="#jobs"
-                  className="footer-mail mono text-[.66rem] font-medium text-[var(--ink)]"
-                  style={{ letterSpacing: ".26em" }}
+                  className="footer-mail mono text-[.64rem] font-medium text-[var(--ink)]"
+                  style={{ letterSpacing: ".22em" }}
                 >
                   TẠO DRAFT EMAIL MỚI →
                 </a>
@@ -441,7 +425,7 @@ export default function Home() {
       </section>
 
       {/* section 05: system integration / status */}
-      <footer id="system" className="border-t border-[var(--line)]" style={{ padding: "clamp(5rem, 12vh, 9rem) var(--pad) 2rem" }}>
+      <footer id="system" className="border-t border-[var(--line)]" style={{ padding: "clamp(4.5rem, 10vh, 7.5rem) var(--pad) 2rem" }}>
         <div className="sec-head">
           <span className="sec-num mono">05</span>
           <span className="sec-rule" />
@@ -457,7 +441,7 @@ export default function Home() {
           </a>
         </h2>
 
-        <div className="foot-grid mono mt-12">
+        <div className="foot-grid mono mt-10">
           <div className="foot-col">
             <span className="foot-label">AUTO SYNC ENGINE</span>
             <span>Chu kỳ: 3 giờ / lần</span>
