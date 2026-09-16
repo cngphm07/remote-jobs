@@ -9,7 +9,8 @@ export async function GET() {
     ]);
 
     return NextResponse.json({ jobs, latestSync });
-  } catch {
+  } catch (error) {
+    console.error("Active job query failed", error);
     return NextResponse.json(
       { error: { code: "JOBS_UNAVAILABLE", message: "Không thể tải danh sách việc làm hiện tại" } },
       { status: 503 },
