@@ -211,7 +211,7 @@ export function InteractiveJobs() {
   return (
     <>
       {/* Search Bar */}
-      <div className="mb-10 flex max-w-2xl items-center border border-[var(--line)] bg-[var(--surface)] p-2 transition-colors focus-within:border-[var(--line2)]">
+      <div className="mb-7 flex max-w-2xl items-center border border-[var(--line)] bg-[var(--surface)] p-3 transition-colors focus-within:border-[var(--line2)]">
         <Search className="ml-2 hidden shrink-0 text-[var(--g3)] sm:block" size={17} />
         <input
           value={searchQuery}
@@ -230,7 +230,7 @@ export function InteractiveJobs() {
       </div>
 
       {/* Filter Pills Bar */}
-      <div className="mb-8 flex flex-wrap gap-2">
+      <div className="mb-10 flex flex-wrap gap-x-2 gap-y-3 border-b border-[var(--line)] pb-6">
         {SOURCES.map((src) => {
           const isActive = selectedSource === src.key;
           const count = sourceCounts[src.key] || 0;
@@ -270,7 +270,7 @@ export function InteractiveJobs() {
           filteredJobs.map((job) => (
             <article
               key={job.title + job.sourceKey}
-              className="group flex flex-col justify-between gap-4 border-b border-[var(--line)] py-6 transition-colors hover:bg-white/[0.015] md:flex-row md:items-center md:py-7"
+              className="group flex flex-col justify-between gap-5 border-b border-[var(--line)] px-1 py-8 transition-colors hover:bg-white/[0.015] md:flex-row md:items-center md:px-4 md:py-9"
             >
               {/* Left column: Meta, Title & Skills */}
               <div className="flex-1 pr-4">
@@ -288,11 +288,11 @@ export function InteractiveJobs() {
                   </span>
                 </div>
 
-                <h3 className="mt-2.5 text-[1.12rem] font-normal leading-snug text-[var(--ink)] transition-colors group-hover:text-white md:text-[1.25rem]">
+                <h3 className="mt-3.5 text-[1.12rem] font-normal leading-snug text-[var(--ink)] transition-colors group-hover:text-white md:text-[1.25rem]">
                   {job.title}
                 </h3>
 
-                <p className="mono mt-2 text-[.64rem] text-[var(--g2)]" style={{ letterSpacing: ".08em" }}>
+                <p className="mono mt-3 text-[.64rem] text-[var(--g2)]" style={{ letterSpacing: ".08em" }}>
                   {job.skills}
                 </p>
               </div>

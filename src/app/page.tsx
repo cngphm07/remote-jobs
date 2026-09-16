@@ -188,10 +188,10 @@ export default function Home() {
           <span className="sec-count mono">GMAIL CONNECTED</span>
         </div>
 
-        <div className="mt-7 border border-[var(--line)] bg-[var(--surface)] p-7 md:p-9 lg:p-10 transition-colors hover:border-[var(--line2)]">
+        <div className="mt-10 border border-[var(--line)] bg-[var(--surface)] p-8 md:p-11 lg:p-12 transition-colors hover:border-[var(--line2)]">
           <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-center">
             <div>
-              <div className="mb-4 flex items-center gap-3">
+              <div className="mb-5 flex items-center gap-3">
                 <span
                   className="mono border border-[var(--line)] px-2.5 py-1 text-[.54rem] text-[var(--accent)]"
                   style={{ letterSpacing: ".18em", borderRadius: "99px" }}
@@ -202,11 +202,11 @@ export default function Home() {
                   4 TEMPLATES · 1-CLICK DRAFT
                 </span>
               </div>
-              <h2 className="display text-[clamp(1.5rem,2.8vw,2.3rem)] leading-[1.08] text-[var(--ink)]">
+              <h2 className="display mt-2 text-[clamp(1.5rem,2.8vw,2.3rem)] leading-[1.12] text-[var(--ink)]">
                 Soạn email ứng tuyển<br />
                 chuẩn phong cách <span className="amp">&amp;</span> cá nhân hóa
               </h2>
-              <p className="mt-4 max-w-xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.7] text-[var(--g1)]">
+              <p className="mt-5 max-w-xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.75] text-[var(--g1)]">
                 Tự động đối chiếu Job Description với Portfolio và kinh nghiệm video editor của bạn để tạo thư ứng tuyển, thư follow-up hoặc phản hồi recruiter chuyên nghiệp.
               </p>
             </div>

@@ -47,7 +47,7 @@ export function SmartImporter() {
   };
 
   return (
-    <div className="border border-[var(--line)] bg-[var(--surface)] p-7 md:p-9 lg:p-10 transition-colors hover:border-[var(--line2)]">
+    <div className="border border-[var(--line)] bg-[var(--surface)] p-8 md:p-11 lg:p-12 transition-colors hover:border-[var(--line2)]">
       <div className="max-w-3xl">
         <div className="mb-4 flex items-center gap-2.5">
           <Link2 size={15} className="text-[var(--accent)]" />
@@ -56,17 +56,17 @@ export function SmartImporter() {
           </span>
         </div>
 
-        <h2 className="display text-[clamp(1.4rem,2.8vw,2.2rem)] leading-[1.08] text-[var(--ink)]">
+        <h2 className="display mt-2 text-[clamp(1.4rem,2.8vw,2.2rem)] leading-[1.12] text-[var(--ink)]">
           Dán link bài tuyển dụng bất kỳ<br />
           để tự động bóc tách <span className="amp">&amp;</span> lưu trữ
         </h2>
 
-        <p className="mt-4 max-w-2xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.7] text-[var(--g2)]">
+        <p className="mt-5 max-w-2xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.75] text-[var(--g2)]">
           Hệ thống tự động phân tích cấu trúc Schema JSON-LD, OpenGraph và trích xuất Tiêu đề, Công ty, Mức lương, Kỹ năng từ link LinkedIn, Upwork, Pickdi, Workable, Indeed, OnlineJobs.ph...
         </p>
 
         {/* URL input form with comfortable spacing */}
-        <form onSubmit={handleSubmit} className="mt-8">
+        <form onSubmit={handleSubmit} className="mt-9">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:border sm:border-[var(--line)] sm:bg-[var(--bg)] sm:p-2.5 focus-within:border-[var(--line2)]">
             <input
               type="url"
