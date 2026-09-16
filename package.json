@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
@@ -23,6 +24,7 @@
     "lucide-react": "^1.46.0",
     "next": "^15.5.25",
     "next-auth": "^5.0.0-beta.32",
+    "prisma": "^6.12.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sanitize-html": "^2.17.7",
