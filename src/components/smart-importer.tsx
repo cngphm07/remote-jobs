@@ -62,7 +62,7 @@ export function SmartImporter() {
         </h2>
 
         <p className="mt-5 max-w-2xl text-[clamp(.9rem,1.4vw,1.05rem)] font-light leading-[1.75] text-[var(--g2)]">
-          Hệ thống tự động phân tích cấu trúc Schema JSON-LD, OpenGraph và trích xuất Tiêu đề, Công ty, Mức lương, Kỹ năng từ link LinkedIn, Upwork, Pickdi, Workable, Indeed, OnlineJobs.ph...
+          Hệ thống tự động phân tích cấu trúc Schema JSON-LD, OpenGraph và trích xuất Tiêu đề, Công ty, Mức lương, Kỹ năng từ link VietnamWorks, LinkedIn, Upwork, Pickdi, Workable, Indeed...
         </p>
 
         {/* URL input form with comfortable spacing */}

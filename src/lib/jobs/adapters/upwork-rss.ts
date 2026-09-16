@@ -4,21 +4,37 @@ import { fetchText } from "./http";
 
 export class UpworkRssAdapter implements JobSourceAdapter {
   readonly key = "upwork_rss" as const;
+
   constructor(
-    private readonly endpoints: string[] = [
+    private readonly customFeedUrl = process.env.UPWORK_FEED_URL,
+  ) {}
+
+  private getEndpoints(): string[] {
+    if (this.customFeedUrl) {
+      return [this.customFeedUrl];
+    }
+    return [
       "https://www.upwork.com/ab/feed/jobs/rss?q=video+editor&sort=recency",
       "https://www.upwork.com/ab/feed/jobs/rss?q=motion+graphics&sort=recency",
-    ],
-  ) {}
+    ];
+  }
 
   async fetchJobs(): Promise<RawJob[]> {
     const allJobs: RawJob[] = [];
+    const endpoints = this.getEndpoints();
 
-    for (const endpoint of this.endpoints) {
+    for (const endpoint of endpoints) {
       try {
         const xml = await fetchText(endpoint, {
           accept: "application/rss+xml, application/xml, text/xml",
+          timeoutMs: 8000,
+          retries: 1,
         });
+
+        if (!xml || xml.includes("Cloudflare") || xml.includes("Access Denied")) {
+          continue;
+        }
+
         const $ = cheerio.load(xml, { xmlMode: true });
 
         $("item").each((_, item) => {
@@ -67,8 +83,8 @@ export class UpworkRssAdapter implements JobSourceAdapter {
           });
         });
       } catch (err) {
-        // Continue to other feeds if one fails
-        console.warn(`Upwork feed error for ${endpoint}:`, err instanceof Error ? err.message : err);
+        // Soft catch: Upwork public RSS may return 403 or 410 without custom auth token
+        console.warn(`Upwork feed note for ${endpoint}:`, err instanceof Error ? err.message : err);
       }
     }
 

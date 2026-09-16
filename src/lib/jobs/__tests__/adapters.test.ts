@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   HimalayasAdapter,
   LinkedInAdapter,
-  OnlineJobsPhAdapter,
   PickdiAdapter,
   UpworkRssAdapter,
+  VietnamWorksAdapter,
   WorkableAdapter,
 } from "../adapters";
 import { parseJobUrl } from "../single-url-parser";
@@ -16,28 +16,24 @@ describe("Job Adapters and Single URL Parser", () => {
     const linkedin = new LinkedInAdapter();
     const workable = new WorkableAdapter();
     const pickdi = new PickdiAdapter();
-    const onlinejobs = new OnlineJobsPhAdapter();
+    const vietnamworks = new VietnamWorksAdapter();
 
     expect(himalayas.key).toBe("himalayas");
     expect(upwork.key).toBe("upwork_rss");
     expect(linkedin.key).toBe("linkedin");
     expect(workable.key).toBe("workable");
     expect(pickdi.key).toBe("pickdi");
-    expect(onlinejobs.key).toBe("onlinejobs_ph");
+    expect(vietnamworks.key).toBe("vietnamworks");
   });
 
-  it("extracts and normalizes job data from single URL parser using mock html", async () => {
-    // Test URL with fallback
-    const sampleUrl = "https://vn.linkedin.com/jobs/view/video-editor-remote-at-jobs-ai-4409565920";
-    
-    // We can test the URL parser handles errors gracefully or parses content
+  it("extracts and normalizes job data from single URL parser", async () => {
+    const sampleUrl = "https://www.vietnamworks.com/video-editor-jv";
     try {
       const result = await parseJobUrl(sampleUrl);
-      expect(result.raw.source).toBe("linkedin");
+      expect(result.raw.source).toBe("vietnamworks");
       expect(result.normalized.title).toBeTruthy();
       expect(result.normalized.isRemote).toBe(true);
     } catch {
-      // Network call might fail in offline test runner, which is expected
       expect(true).toBe(true);
     }
   });

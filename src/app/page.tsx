@@ -97,7 +97,7 @@ export default async function Home() {
           </h1>
 
           <p className="hero-desc">
-            Hệ thống tự động tổng hợp việc làm <b>Video Editor Remote</b> toàn cầu từ <b>LinkedIn, Upwork, Pickdi, Workable, Himalayas, OnlineJobs</b>. Tự động đồng bộ mỗi 3 giờ, hỗ trợ AI soạn thảo email ứng tuyển cá nhân hóa và đồng bộ 2 chiều với Gmail.
+            Hệ thống tự động tổng hợp việc làm <b>Video Editor Remote</b> toàn cầu từ <b>VietnamWorks, LinkedIn, Upwork, Pickdi, Workable, Himalayas</b>. Tự động đồng bộ mỗi 3 giờ, hỗ trợ AI soạn thảo email ứng tuyển cá nhân hóa và đồng bộ 2 chiều với Gmail.
           </p>
 
           {/* hero meta */}
@@ -133,7 +133,7 @@ export default async function Home() {
       {/* marquee */}
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
-          <span>PICKDI CREATIVE</span>
+          <span>VIETNAMWORKS API</span>
           <span className="sep">✦</span>
           <span>LINKEDIN JOBS</span>
           <span className="sep">✦</span>
@@ -143,13 +143,13 @@ export default async function Home() {
           <span className="sep">✦</span>
           <span>HIMALAYAS REMOTE</span>
           <span className="sep">✦</span>
-          <span>ONLINEJOBS.PH</span>
-          <span className="sep">✦</span>
           <span>REMOTIVE API</span>
           <span className="sep">✦</span>
           <span>REMOTE OK</span>
           <span className="sep">✦</span>
           <span>ARBEITNOW</span>
+          <span className="sep">✦</span>
+          <span>PICKDI CREATIVE</span>
           <span className="sep">✦</span>
         </div>
       </div>
@@ -310,8 +310,8 @@ export default async function Home() {
           </div>
           <div className="foot-col">
             <span className="foot-label">9 JOB SOURCES</span>
-            <span>LinkedIn · Upwork · Pickdi</span>
-            <span>Workable · Himalayas · OnlineJobs</span>
+            <span>VietnamWorks · LinkedIn · Upwork</span>
+            <span>Workable · Himalayas · Pickdi</span>
             <span>Remotive · Remote OK · Arbeitnow</span>
           </div>
           <div className="foot-col">

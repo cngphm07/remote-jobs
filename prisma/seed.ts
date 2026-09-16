@@ -4,6 +4,42 @@ const prisma = new PrismaClient();
 
 const sources = [
   {
+    key: "vietnamworks",
+    name: "VietnamWorks",
+    kind: SourceKind.API,
+    baseUrl: "https://ms.vietnamworks.com/job-search/v1.0/search",
+  },
+  {
+    key: "linkedin",
+    name: "LinkedIn Jobs",
+    kind: SourceKind.CRAWLER,
+    baseUrl: "https://www.linkedin.com/jobs",
+  },
+  {
+    key: "upwork_rss",
+    name: "Upwork",
+    kind: SourceKind.RSS,
+    baseUrl: "https://www.upwork.com/ab/feed/jobs/rss",
+  },
+  {
+    key: "pickdi",
+    name: "Pickdi Creative",
+    kind: SourceKind.CRAWLER,
+    baseUrl: "https://pickdi.com",
+  },
+  {
+    key: "workable",
+    name: "Workable",
+    kind: SourceKind.API,
+    baseUrl: "https://jobs.workable.com",
+  },
+  {
+    key: "himalayas",
+    name: "Himalayas",
+    kind: SourceKind.API,
+    baseUrl: "https://himalayas.app/jobs/api",
+  },
+  {
     key: "remotive",
     name: "Remotive",
     kind: SourceKind.API,
@@ -22,42 +58,6 @@ const sources = [
     baseUrl: "https://www.arbeitnow.com/api/job-board-api",
   },
   {
-    key: "himalayas",
-    name: "Himalayas",
-    kind: SourceKind.API,
-    baseUrl: "https://himalayas.app/jobs/api",
-  },
-  {
-    key: "upwork_rss",
-    name: "Upwork RSS",
-    kind: SourceKind.RSS,
-    baseUrl: "https://www.upwork.com/ab/feed/jobs/rss",
-  },
-  {
-    key: "linkedin",
-    name: "LinkedIn Jobs",
-    kind: SourceKind.CRAWLER,
-    baseUrl: "https://www.linkedin.com/jobs",
-  },
-  {
-    key: "workable",
-    name: "Workable",
-    kind: SourceKind.API,
-    baseUrl: "https://jobs.workable.com",
-  },
-  {
-    key: "pickdi",
-    name: "Pickdi Creative",
-    kind: SourceKind.CRAWLER,
-    baseUrl: "https://pickdi.com",
-  },
-  {
-    key: "onlinejobs_ph",
-    name: "OnlineJobs.ph",
-    kind: SourceKind.CRAWLER,
-    baseUrl: "https://www.onlinejobs.ph",
-  },
-  {
     key: "manual",
     name: "Direct Import",
     kind: SourceKind.MANUAL,
@@ -71,6 +71,19 @@ async function main() {
       where: { key: source.key },
       update: source,
       create: source,
+    });
+  }
+
+  // Deactivate or delete old onlinejobs_ph source if present
+  const oldSource = await prisma.jobSource.findUnique({ where: { key: "onlinejobs_ph" } });
+  if (oldSource) {
+    await prisma.job.updateMany({
+      where: { sourceId: oldSource.id },
+      data: { isActive: false, staleAt: new Date() },
+    });
+    await prisma.jobSource.update({
+      where: { id: oldSource.id },
+      data: { enabled: false },
     });
   }
 

@@ -10,12 +10,12 @@ export interface ParsedJobResult {
 
 function detectSourceKey(url: string): JobSourceKey {
   const lower = url.toLowerCase();
+  if (lower.includes("vietnamworks.com")) return "vietnamworks";
   if (lower.includes("linkedin.com")) return "linkedin";
   if (lower.includes("upwork.com")) return "upwork_rss";
   if (lower.includes("himalayas.app")) return "himalayas";
   if (lower.includes("workable.com")) return "workable";
   if (lower.includes("pickdi.com")) return "pickdi";
-  if (lower.includes("onlinejobs.ph")) return "onlinejobs_ph";
   if (lower.includes("remotive.com")) return "remotive";
   if (lower.includes("remoteok.com")) return "remoteok";
   if (lower.includes("arbeitnow.com")) return "arbeitnow";

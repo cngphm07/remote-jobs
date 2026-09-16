@@ -2,12 +2,12 @@ export const JOB_SOURCE_KEYS = [
   "remotive",
   "remoteok",
   "arbeitnow",
+  "vietnamworks",
   "himalayas",
   "upwork_rss",
   "linkedin",
   "workable",
   "pickdi",
-  "onlinejobs_ph",
   "manual",
 ] as const;
 export type JobSourceKey = (typeof JOB_SOURCE_KEYS)[number];

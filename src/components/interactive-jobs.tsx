@@ -21,7 +21,7 @@ type InteractiveJobsProps = {
 };
 
 function formatSource(source: string) {
-  return source.replace("OnlineJobs.ph", "OnlineJobs").replace("Remote OK", "Remote OK");
+  return source;
 }
 
 export function InteractiveJobs({ jobs }: InteractiveJobsProps) {
