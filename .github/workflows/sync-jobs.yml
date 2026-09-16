@@ -11,5 +11,5 @@ jobs:
     steps:
       - name: Trigger RemoteCut Job Ingestion Cron
         run: |
-          curl -s -X POST https://remote-jobs-omega.vercel.app/remote/api/cron/jobs \
+          curl -s -X POST https://remote.oddpig.io.vn/api/cron/jobs \
             -H "Authorization: Bearer remotecut_cron_sync_secret_2026" || true

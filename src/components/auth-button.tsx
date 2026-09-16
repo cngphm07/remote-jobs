@@ -8,7 +8,7 @@ export async function AuthButton() {
       <form
         action={async () => {
           "use server";
-          await signIn("google", { redirectTo: "/remote" });
+          await signIn("google", { redirectTo: "/" });
         }}
       >
         <button
@@ -45,7 +45,7 @@ export async function AuthButton() {
       <form
         action={async () => {
           "use server";
-          await signOut({ redirectTo: "/remote" });
+          await signOut({ redirectTo: "/" });
         }}
       >
         <button

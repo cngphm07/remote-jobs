@@ -22,7 +22,6 @@ export function authConfiguration(): NextAuthConfig {
     : [];
 
   return {
-    basePath: "/remote/api/auth",
     trustHost: true,
     providers,
     session: { strategy: "jwt" },
